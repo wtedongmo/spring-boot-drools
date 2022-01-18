@@ -1,0 +1,23 @@
+import  com.twb.drools.domain.FDRequest;
+
+rule "FD Interest Rate for Citi Bank duration more than 1 year and below 2 years"
+    when
+        fdObject : FDRequest( bankName=="Citi" && durationInYear >= 1 && durationInYear < 2);
+    then
+        fdObject.setFdInterestRate("3%");
+end;
+
+rule "FD Interest Rate for Citi Bank for duration more than or equal to 2 years"
+    when
+        fdObject : FDRequest( bankName=="Citi" && durationInYear >= 2);
+    then
+        fdObject.setFdInterestRate("6%");
+end;
+
+rule "FD Interest Rate for JP Bank for duration more than or equal to 1 year"
+    when
+        fdObject : FDRequest( bankName=="JP" && durationInYear >= 1);
+    then
+        fdObject.setFdInterestRate("3%");
+end;
+
